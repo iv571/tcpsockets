@@ -37,11 +37,26 @@ public class TCPClient {
 		 System.out.print("Enter message: ");
 		 message = userEntry.nextLine(); 
 		 output.println(message); 
+		 response = input.nextLine(); 
+		 System.out.println("\nSERVER> " +response); 
 		 } while (!message.equals("***CLOSE***"));
 		 }
-		 catch(IOException ioEx)
-		 { 
+		 catch(IOException ioEx) {
+			 ioEx.printStackTrace(); 
 		 }
+		 
+		 finally
+		 {
+		 try
+		 {
+			 System.out.println("\n* Closing connection… *");
+			 link.close(); 
+		 } catch(IOException ioEx) {
+			 System.out.println("Unable to disconnect!");
+			 System.exit(1);
+		 }
+		 }
+		 	
 	 }
 	 
 }
